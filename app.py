@@ -23,10 +23,13 @@ st.title("ASAM Tracker")
 
 def main():
 
-    aapl = yf.Ticker("AAPL")
-    hist = aapl.history(period="2d")
-    st.write(aapl)
-    most_recent_trading_day = hist.index[0]
+    #aapl = yf.Ticker("AAPL")
+    #hist = aapl.history(period="2d")
+    #st.write(aapl)
+    #most_recent_trading_day = hist.index[0]
+    ticker="AAPL"
+    test = yf.download(ticker, period="5d")
+    st.write(test)
 
     #Change dynamic values
     analysis_start_date = pd.to_datetime('2023-12-29', format='%Y-%m-%d').date() #the day first stock was bought 
