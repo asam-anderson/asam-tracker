@@ -64,7 +64,8 @@ def main():
     
 
     transactions_filter_buy= transactions[transactions.Action=='Buy'][['Group','Security','Price']]
-
+    st.write(transactions_filter_buy)
+    st.write(positions_calc)
     postions_calc = postions_calc.merge(transactions_filter_buy,how='right')[['Group','Security','QuantXAction','Price']]
 
     postions_calc= postions_calc.rename(columns= {'Security':'Tickers','QuantXAction':'Shares','Price':'Purchase'})
@@ -82,7 +83,7 @@ def main():
     #Fetch the data
     daily_data = yf.download(tickers_list , start=analysis_end_date ,period= '1d' ,end= analysis_end_date_plusone )['Close'].dropna(axis=0,how='all')
     daily_data_transpose = daily_data.transpose().reset_index().rename(columns={'Ticker':'Tickers'})
-    st.write(postions_calc)
+   
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
     
     postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost','Price']
