@@ -67,7 +67,7 @@ def main():
     
     postions_calc = postions_calc.merge(transactions_filter_buy,how='right')[['Group','Security','QuantXAction','Price']]
     
-    postions_calc= postions_calc.rename(columns= {'Security':'Tickers','QuantXAction':'Shares'})
+    postions_calc= postions_calc.rename(columns= {'Security':'Tickers','QuantXAction':'Shares','Price':'Purchase'})
     postions_calc = postions_calc[postions_calc.Shares>0]
 
     postions_calc['Cost'] = postions_calc['Shares']* postions_calc['Purchase']
