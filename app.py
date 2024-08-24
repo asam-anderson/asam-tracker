@@ -97,6 +97,8 @@ def main():
     data = data_main['Adj Close'].T
     data_adjusted = data_main['Adj Close'].T
     ##Loading all stock data gonna take 3 mins to run 
+
+    transactions['Date'] = pd.to_datetime(transactions['Date'])
     st.write(data.T)
     st.write(transactions)
     st.write(data.columns>=transactions[transactions.Action=='Buy'].Date.max())
