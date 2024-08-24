@@ -80,8 +80,7 @@ def main():
     tickers_list = postions_calc.Tickers.unique().tolist()
 
     #Fetch the data
-    #daily_data = yf.download(tickers_list , start=analysis_end_date ,period= '1d' ,end= analysis_end_date_plusone )['Close'].dropna(axis=0,how='all')
-    daily_data = yf.download(tickers_list,start=analysis_end_date)['Close'].dropna(axis=0,how='all')
+    daily_data = yf.download(tickers_list , start=analysis_end_date ,period= '1d' ,end= analysis_end_date_plusone )['Close'].dropna(axis=0,how='all')
     daily_data_transpose = daily_data.transpose().reset_index().rename(columns={'Ticker':'Tickers'})
    
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
@@ -93,7 +92,8 @@ def main():
     postions_calc['Gain %'] = postions_calc['Gain $']/postions_calc['Cost']
 
     
-    data_main = pdr.get_data_yahoo(tickers_list, start=analysis_start_date, end=analysis_end_date_plusone).dropna(axis=0,how='all') #switch this date for different cohorts
+    #data_main = pdr.get_data_yahoo(tickers_list, start=analysis_start_date, end=analysis_end_date_plusone).dropna(axis=0,how='all') #switch this date for different cohorts
+    data_main = yf.download(tickers_list, start=analysis_start_date).dropna(axis=0,how='all')
     data = data_main['Adj Close'].T
     data_adjusted = data_main['Adj Close'].T
     ##Loading all stock data gonna take 3 mins to run 
