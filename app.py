@@ -85,7 +85,7 @@ def main():
    
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
     st.write(postions_calc)
-    postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost']
+    postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost','Price']
 
     postions_calc['Value'] = postions_calc['Shares']*postions_calc['Purchase']
     postions_calc['Gain $'] = postions_calc['Value'] - postions_calc['Cost']
