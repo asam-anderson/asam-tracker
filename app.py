@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 import warnings
 import statsmodels.api as sm
 import plotly.graph_objects as go
-yf.pdr_override()
+#yf.pdr_override()
 
 
 st.set_page_config(page_title="ASAM Tracker", layout="wide")
@@ -80,7 +80,8 @@ def main():
     tickers_list = postions_calc.Tickers.unique().tolist()
 
     #Fetch the data
-    daily_data = yf.download(tickers_list , start=analysis_end_date ,period= '1d' ,end= analysis_end_date_plusone )['Close'].dropna(axis=0,how='all')
+    #daily_data = yf.download(tickers_list , start=analysis_end_date ,period= '1d' ,end= analysis_end_date_plusone )['Close'].dropna(axis=0,how='all')
+    daily_data = yf.download(tickers_list,start=analysis_end_date)['Close'].dropna(axis=0,how='all')
     daily_data_transpose = daily_data.transpose().reset_index().rename(columns={'Ticker':'Tickers'})
    
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
