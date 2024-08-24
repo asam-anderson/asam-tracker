@@ -128,7 +128,7 @@ def main():
     daily_returns = Total_Value.drop(['Group','Shares'], axis=1)
     daily_returns = daily_returns.set_index('Tickers', inplace=False)
     daily_returns = daily_returns.T.pct_change()
-    
+    st.write(daily_returns)
     daily_returns_T = daily_returns.drop(daily_returns.index[0]).T
     daily_returns_T['Total_Ret'] = daily_returns_T.apply(lambda row: (1 + row).prod() - 1, axis=1)
 
