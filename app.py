@@ -215,7 +215,8 @@ def main():
     hml_returns = hml_returns[(hml_returns['year'] == datetime.now().year)]
     hml_returns['hml'] = hml_returns['^RAV'] - hml_returns['^RAG']
     hml_returns = hml_returns.loc[:, ['hml']]
-    
+    st.write(xs_mkt)
+    st.write(smb_returns)
     final = pd.merge(xs_mkt, smb_returns, left_index=True, right_index=True)
     final = pd.merge(final, hml_returns, left_index=True, right_index=True)
     
