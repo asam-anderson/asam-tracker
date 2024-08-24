@@ -66,8 +66,8 @@ def main():
     transactions_filter_buy= transactions[transactions.Action=='Buy'][['Group','Security','Price']]
     
     postions_calc = postions_calc.merge(transactions_filter_buy,how='right')[['Group','Security','QuantXAction','Price']]
-    st.write(postions_calc)
-    postions_calc= postions_calc.rename(columns= {'Security':'Tickers','QuantXAction':'Shares','Price':'Purchase'})
+    
+    postions_calc= postions_calc.rename(columns= {'Security':'Tickers','QuantXAction':'Shares'})
     postions_calc = postions_calc[postions_calc.Shares>0]
 
     postions_calc['Cost'] = postions_calc['Shares']* postions_calc['Purchase']
@@ -85,9 +85,9 @@ def main():
    
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
     
-    postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost','Price']
+    postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost']
 
-    postions_calc['Value'] = postions_calc['Shares']*postions_calc['Price']
+    postions_calc['Value'] = postions_calc['Shares']*postions_calc['Purchase']
     postions_calc['Gain $'] = postions_calc['Value'] - postions_calc['Cost']
     postions_calc['Gain %'] = postions_calc['Gain $']/postions_calc['Cost']
 
