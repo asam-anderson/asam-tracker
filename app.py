@@ -28,8 +28,9 @@ def main():
     #st.write(aapl)
     #most_recent_trading_day = hist.index[0]
     ticker="AAPL"
-    test = yf.download(ticker, period="5d")
-    st.write(test)
+    aaplData = yf.download(ticker, period="5d")
+    most_recent_trading_day = aaplData.index[-1]
+    st.write(most_recent_trading_day)
 
     #Change dynamic values
     analysis_start_date = pd.to_datetime('2023-12-29', format='%Y-%m-%d').date() #the day first stock was bought 
