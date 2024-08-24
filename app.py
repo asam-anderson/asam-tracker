@@ -8,9 +8,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import openpyxl
 import math
-import yfinance as yf
-from datetime import datetime, timedelta
 from pandas_datareader import data as pdr
+import fix_yahoo_finance as yf
+from datetime import datetime, timedelta
 import warnings
 import statsmodels.api as sm
 import plotly.graph_objects as go
