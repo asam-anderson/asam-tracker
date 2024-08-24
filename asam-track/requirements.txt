@@ -1,0 +1,9 @@
+pandas
+numpy
+matplotlib
+streamlit
+openpyxl
+yfinance
+pandas_datareader
+statsmodels
+plotly
