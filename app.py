@@ -86,7 +86,7 @@ def main():
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
 
     columns = ['Group', 'Tickers', 'Shares', 'Purchase', 'Cost', 'Additional']
-    positions_calc.columns = columns[:len(positions_calc.columns)]
+    postions_calc.columns = columns[:len(postions_calc.columns)]
 
     #postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost']
 
