@@ -127,7 +127,7 @@ def main():
     # Apply pct_change() along the rows (now representing dates)
     daily_returns = Total_Value.drop(['Group','Shares'], axis=1)
     daily_returns = daily_returns.set_index('Tickers', inplace=False)
-    st.write(daily_returns)
+    
     daily_returns = daily_returns.T.pct_change()
     
     daily_returns_T = daily_returns.drop(daily_returns.index[0]).T
