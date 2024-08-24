@@ -100,12 +100,14 @@ def main():
 
     transactions['Date'] = pd.to_datetime(transactions['Date'])
     max_buy_date = transactions[transactions.Action == 'Buy']['Date'].max()
+    
     data.columns = pd.to_datetime(data.columns, errors='coerce').tz_localize(None)
     data = data.loc[:, ~data.columns.isna()]
-    st.write(data.columns)
-    st.write(max_buy_date)
+
+    data_adjusted.columns = pd.to_datetime(data_adjusted.columns, errors='coerce').tz_localize(None)
+    
     data = data.T[data.columns >= max_buy_date].T
-    data_adjusted = data_adjusted.T[data_adjusted.columns>=transactions[transactions.Action=='Buy'].Date.max()].T
+    data_adjusted = data_adjusted.T[data_adjusted.columns >= max_buy_date].T
 
     history = postions_calc[['Group','Tickers']].copy()
     history = history.merge(data,how='left',left_on='Tickers',right_index=True)
