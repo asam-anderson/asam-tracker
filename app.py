@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 import warnings
 import statsmodels.api as sm
 import plotly.graph_objects as go
-yf.pdr_override()
+#yf.pdr_override()
 
 
 st.set_page_config(page_title="ASAM Tracker", layout="wide")
