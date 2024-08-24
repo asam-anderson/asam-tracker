@@ -100,7 +100,7 @@ def main():
 
     transactions['Date'] = pd.to_datetime(transactions['Date'])
     max_buy_date = transactions[transactions.Action == 'Buy']['Date'].max()
-    data = data.T[data.columns>=transactions[transactions.Action=='Buy'].Date.max()].T
+    data = data.T[data.columns >= max_buy_date].T
     data_adjusted = data_adjusted.T[data_adjusted.columns>=transactions[transactions.Action=='Buy'].Date.max()].T
 
     history = postions_calc[['Group','Tickers']].copy()
