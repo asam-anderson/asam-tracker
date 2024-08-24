@@ -4,7 +4,7 @@ numpy
 matplotlib
 streamlit
 openpyxl
-fix_yahoo_finance
+yfinance
 pandas_datareader
 statsmodels
 plotly
