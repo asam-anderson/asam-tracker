@@ -25,7 +25,7 @@ def main():
 
     aapl = yf.Ticker("AAPL")
     hist = aapl.history(period="2d")
-
+st.write(hist)
     most_recent_trading_day = hist.index[0]
 
     #Change dynamic values
