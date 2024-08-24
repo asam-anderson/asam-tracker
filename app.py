@@ -100,6 +100,7 @@ def main():
 
     transactions['Date'] = pd.to_datetime(transactions['Date'])
     max_buy_date = transactions[transactions.Action == 'Buy']['Date'].max()
+    st.write(data.loc[:, ~data.columns.isna()])
     data = data.T[data.columns >= max_buy_date].T
     data_adjusted = data_adjusted.T[data_adjusted.columns>=transactions[transactions.Action=='Buy'].Date.max()].T
 
