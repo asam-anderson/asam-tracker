@@ -82,7 +82,7 @@ def main():
     #Fetch the data
     daily_data = yf.download(tickers_list , start=analysis_end_date ,period= '1d' ,end= analysis_end_date_plusone )['Close'].dropna(axis=0,how='all')
     daily_data_transpose = daily_data.transpose().reset_index().rename(columns={'Ticker':'Tickers'})
-    st.write(daily_data_transpose)
+    st.write(postions_calc)
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
     
     postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost','Price']
