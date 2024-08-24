@@ -84,7 +84,7 @@ def main():
     daily_data_transpose = daily_data.transpose().reset_index().rename(columns={'Ticker':'Tickers'})
    
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
-    st.write(postions_calc)
+    
     postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost','Price']
 
     postions_calc['Value'] = postions_calc['Shares']*postions_calc['Purchase']
@@ -217,8 +217,8 @@ def main():
     hml_returns = hml_returns.loc[:, ['hml']]
 
     smb_returns.index = smb_returns.index.tz_localize(None)
-    st.write(xs_mkt)
-    st.write(smb_returns)
+    hml_returns.index = hml_returns.index.tz_localize(None)
+    
     final = pd.merge(xs_mkt, smb_returns, left_index=True, right_index=True)
     final = pd.merge(final, hml_returns, left_index=True, right_index=True)
     
