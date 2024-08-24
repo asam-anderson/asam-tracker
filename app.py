@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import openpyxl
 import math
 from pandas_datareader import data as pdr
-import fix-yahoo-finance as yf
+import fix_yahoo_finance as yf
 from datetime import datetime, timedelta
 import warnings
 import statsmodels.api as sm
