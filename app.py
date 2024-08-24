@@ -64,10 +64,9 @@ def main():
     
 
     transactions_filter_buy= transactions[transactions.Action=='Buy'][['Group','Security','Price']]
-    st.write(transactions_filter_buy)
-    st.write(postions_calc)
+    
     postions_calc = postions_calc.merge(transactions_filter_buy,how='right')[['Group','Security','QuantXAction','Price']]
-
+    st.write(postions_calc)
     postions_calc= postions_calc.rename(columns= {'Security':'Tickers','QuantXAction':'Shares','Price':'Purchase'})
     postions_calc = postions_calc[postions_calc.Shares>0]
 
