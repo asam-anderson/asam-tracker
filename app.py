@@ -100,7 +100,7 @@ def main():
 
     transactions['Date'] = pd.to_datetime(transactions['Date'])
     max_buy_date = transactions[transactions.Action == 'Buy']['Date'].max()
-    data.columns = pd.to_datetime(data.columns, errors='coerce')
+    data.columns = pd.to_datetime(data.columns, errors='coerce').tz_localize()
     data = data.loc[:, ~data.columns.isna()]
     st.write(data.columns)
     st.write(max_buy_date)
