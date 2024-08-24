@@ -30,7 +30,6 @@ def main():
     ticker="AAPL"
     aaplData = yf.download(ticker, period="5d")
     most_recent_trading_day = aaplData.index[-1]
-    st.write(most_recent_trading_day)
 
     #Change dynamic values
     analysis_start_date = pd.to_datetime('2023-12-29', format='%Y-%m-%d').date() #the day first stock was bought 
@@ -85,7 +84,7 @@ def main():
     daily_data_transpose = daily_data.transpose().reset_index().rename(columns={'Ticker':'Tickers'})
     
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
-
+    st.write(postions_calc)
     postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost','Price']
 
     postions_calc['Value'] = postions_calc['Shares']*postions_calc['Price']
