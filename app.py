@@ -84,8 +84,11 @@ def main():
     daily_data_transpose = daily_data.transpose().reset_index().rename(columns={'Ticker':'Tickers'})
    
     postions_calc = postions_calc.merge(daily_data_transpose, left_on='Tickers', right_on='Tickers', how ='left')
-    
-    postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost']
+
+    columns = ['Group', 'Tickers', 'Shares', 'Purchase', 'Cost', 'Additional']
+    positions_calc.columns = columns[:len(positions_calc.columns)]
+
+    #postions_calc.columns = ['Group','Tickers','Shares','Purchase','Cost']
 
     postions_calc['Value'] = postions_calc['Shares']*postions_calc['Purchase']
     postions_calc['Gain $'] = postions_calc['Value'] - postions_calc['Cost']
